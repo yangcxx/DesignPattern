@@ -31,7 +31,15 @@ public class FilterChain implements Filter {
      * @return
      */
     public FilterChain addFilter(Filter filter) {
-        this.filters.add(filter);
+        //fixme 如果 filter 为 FilterChain 可能会导致忽略某些 Filter
+        if (filter instanceof FilterChain) {
+            FilterChain chain = (FilterChain) filter;
+            for (Filter f : chain.getFilters()) {
+                this.filters.add(f);
+            }
+        } else {
+            this.filters.add(filter);
+        }
         return this;
     }
 
