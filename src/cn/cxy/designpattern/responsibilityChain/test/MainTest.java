@@ -1,10 +1,12 @@
-package cn.cxy.designpattern.test;
+package cn.cxy.designpattern.responsibilityChain.test;
 
 import cn.cxy.designpattern.responsibilityChain.filter.FaceFilter;
 import cn.cxy.designpattern.responsibilityChain.filter.HTMLFilter;
 import cn.cxy.designpattern.responsibilityChain.filter.SensitiveFilter;
 import cn.cxy.designpattern.responsibilityChain.processor.FilterChain;
 import cn.cxy.designpattern.responsibilityChain.processor.MsgProcessor;
+import cn.cxy.designpattern.responsibilityChain.web.Request;
+import cn.cxy.designpattern.responsibilityChain.web.Response;
 
 /**
  * Function: TODO
@@ -16,7 +18,7 @@ import cn.cxy.designpattern.responsibilityChain.processor.MsgProcessor;
  */
 public class MainTest {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         String msg = "设计模式:)（Design pattern）代表了最佳<script>的实践，通常被有经验的面向对象的软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的";
         MsgProcessor processor = new MsgProcessor();
         //processor.setMsg(msg);
@@ -32,6 +34,14 @@ public class MainTest {
         processor.setMsg(msg);
         String result = processor.process();
         System.out.println(result);
+
+        //JavaWeb 过滤Request&Response模拟
+        Request request = new Request();
+        request.setRequestString(msg);
+        Response response = new Response();
+        response.setResponseString("response");
+        fc.doFilter(request, response, fc);
+        System.err.println(request.getRequestString() + " : " + response.getResponseString());
     }
 
 }
