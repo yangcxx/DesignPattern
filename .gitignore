@@ -24,3 +24,8 @@
 hs_err_pid*
 /.idea/
 /DesignPattern.iml
+/bin/
+/lib/
+/.classpath
+/.project
+/.settings/

@@ -11,9 +11,15 @@ package cn.cxy.designpattern.iterator;
 public class MainTest {
 
     public static void main(String[] args){
-        Collection collection = new LinkedList();
-        collection.add(1);
-        collection.add(2);
+        Collection collection = new ArrayList();
+        for (int i = 0; i < 10; i++) {
+			collection.add(i+"--"+i);
+		}
+        Iterator iterator = collection.iterator();
+        while (iterator.hasNext()) {
+			Object type = (Object) iterator.next();
+			System.out.println(type);
+		}
         System.out.println(collection.size());
     }
 
