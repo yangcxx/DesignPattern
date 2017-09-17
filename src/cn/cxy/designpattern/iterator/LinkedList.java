@@ -15,7 +15,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class LinkedList {
+public class LinkedList implements Collection {
 
     private Node first = null;
     private Node tail = null;

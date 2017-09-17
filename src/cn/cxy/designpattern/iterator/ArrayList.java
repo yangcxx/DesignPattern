@@ -8,7 +8,7 @@ package cn.cxy.designpattern.iterator;
  * @author: cx.yang
  * @since: Thinkingbar Web Project 1.0
  */
-public class ArrayList {
+public class ArrayList implements Collection {
 
     Object[] data = new Object[10];
     int index = 0;

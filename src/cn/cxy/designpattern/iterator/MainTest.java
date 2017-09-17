@@ -11,10 +11,10 @@ package cn.cxy.designpattern.iterator;
 public class MainTest {
 
     public static void main(String[] args){
-        LinkedList linkedList = new LinkedList();
-        linkedList.add(1);
-        linkedList.add(2);
-        System.out.println(linkedList.size());
+        Collection collection = new LinkedList();
+        collection.add(1);
+        collection.add(2);
+        System.out.println(collection.size());
     }
 
 }
