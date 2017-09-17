@@ -1,8 +1,7 @@
 package cn.cxy.designpattern.strategy.java;
 
-import java.util.Comparator;
-
 import cn.cxy.designpattern.strategy.Comparable;
+import cn.cxy.designpattern.strategy.Comparator;
 import lombok.Getter;
 import lombok.Setter;
 
