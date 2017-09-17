@@ -1,4 +1,4 @@
-package cn.cxy.designpattern.factory;
+package cn.cxy.designpattern.factory.normal;
 
 public class Ship extends Vehicle {
 	
