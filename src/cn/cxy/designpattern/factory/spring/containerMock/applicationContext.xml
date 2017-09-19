@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
 	<bean id="car" class="cn.cxy.designpattern.factory.spring.containerMock.Car" />
-	<!-- <bean id ="plane" class="cn.cxy.designpattern.factory.spring.containerMock.Plane"/> -->
 </beans>
