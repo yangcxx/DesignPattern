@@ -1,4 +1,4 @@
-package cn.cxy.designpattern.dynamic_proxy;
+package cn.cxy.designpattern.dynamic_proxy.statics;
 
 import java.util.Random;
 

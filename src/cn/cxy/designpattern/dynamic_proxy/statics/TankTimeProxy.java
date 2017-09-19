@@ -1,19 +1,25 @@
-package cn.cxy.designpattern.dynamic_proxy;
+package cn.cxy.designpattern.dynamic_proxy.statics;
 
 /**
- * Function: 使用继承方式实现代理-1
+ * Function: 静态代理
  * Reason: TODO ADD REASON(可选).</br>
- * Date: 2017/9/19 21:50 </br>
+ * Date: 2017/9/19 21:59 </br>
  *
  * @author: cx.yang
  * @since: Thinkingbar Web Project 1.0
  */
-public class TankTime extends Tank  {
+public class TankTimeProxy implements Movable {
+
+    Movable t;
+
+    public TankTimeProxy(Movable t) {
+        this.t = t;
+    }
 
     @Override
     public void move() {
         System.out.println("start time: "+System.currentTimeMillis());
-        super.move();
+        t.move();
         System.out.println("end time: "+System.currentTimeMillis());
     }
 }
