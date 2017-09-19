@@ -12,9 +12,9 @@ public class Main {
 
     public static void main(String[] args){
         Tank t = new Tank();
-        Movable tlp = new TankLogProxy(t);
-        Movable ttp = new TankTimeProxy(tlp);
-        ttp.move();
+        Movable ttp = new TankTimeProxy(t);
+        Movable tlp = new TankLogProxy(ttp);
+        tlp.move();
     }
 
 }
