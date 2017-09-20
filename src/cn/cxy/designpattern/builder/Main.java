@@ -11,9 +11,13 @@ package cn.cxy.designpattern.builder;
 public class Main {
 
     public static void main(String[] args) {
-        Director director = new Director(new CommonRoleBuilder());
+        CommonRoleBuilder commonRoleBuilder = new CommonRoleBuilder();
+        Director director = new Director(commonRoleBuilder);
         Role role = director.construct();
         System.out.println(role);
+
+        director.assembly();
+        System.err.println(commonRoleBuilder.getRole());
     }
 
 }

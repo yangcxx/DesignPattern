@@ -23,6 +23,15 @@ public class Director {
         builder.buildHp();
         builder.buildMp();
         builder.buildSp();
-        return builder.getRole();
+        return builder.getRole();//从 builder 中获取产品
+    }
+
+    public void assembly() {
+        builder.buildBody();
+        builder.buildFace();
+        builder.buildHead();
+        builder.buildHp();
+        builder.buildMp();
+        builder.buildSp();
     }
 }
