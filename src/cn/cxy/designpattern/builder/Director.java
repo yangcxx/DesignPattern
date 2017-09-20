@@ -1,7 +1,7 @@
 package cn.cxy.designpattern.builder;
 
 /**
- * Function: TODO
+ * Function: 负责整体的构建算法，通常是分步进行的
  * Reason: TODO ADD REASON(可选).</br>
  * Date: 2017/9/20 11:58 </br>
  *

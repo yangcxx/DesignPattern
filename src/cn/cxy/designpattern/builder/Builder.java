@@ -1,7 +1,7 @@
 package cn.cxy.designpattern.builder;
 
 /**
- * Function: TODO
+ * Function: 定义如何构建各个部分及具体实现
  * Reason: TODO ADD REASON(可选).</br>
  * Date: 2017/9/20 11:55 </br>
  *
