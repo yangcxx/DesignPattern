@@ -17,7 +17,7 @@ public class MainTest {
 		}
         Iterator iterator = collection.iterator();
         while (iterator.hasNext()) {
-			Object type = (Object) iterator.next();
+			Object type = iterator.next();
 			System.out.println(type);
 		}
         System.out.println(collection.size());

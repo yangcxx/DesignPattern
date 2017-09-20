@@ -7,27 +7,49 @@ import javax.tools.ToolProvider;
 import java.io.File;
 import java.io.FileWriter;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.charset.Charset;
 import java.util.Locale;
 
 /**
- * Function: 模拟javac编译并通过反射创建对象
+ * Function: 动态编译方法类
  * Reason: TODO ADD REASON(可选).</br>
- * Date: 2017/9/19 23:03 </br>
+ * Date: 2017/9/20 18:11 </br>
  *
  * @author: cx.yang
  * @since: Thinkingbar Web Project 1.0
  */
-public class CompileTest {
+public class Proxy {
 
-    public static void main(String[] args) throws Exception {
+    /**
+     * @param aInterface 目标类需要实现的接口
+     * @param handler    需要对方法执行的操作
+     * @return
+     * @throws Exception
+     */
+    public static Object newInstance(Class aInterface, InvocationHandler handler) throws Exception {
         String enter = "\r\n";
+
+        String methodStr = "";
+        //cxy 根据接口动态拼装已有方法实现  --  暂时忽略返回值及参数列表
+        Method[] methods = aInterface.getMethods();
+        for (Method m : methods) {
+            methodStr += "@Override " + enter +
+                    "public void " + m.getName() + " (){" + enter +
+                    //TODO 将具体的方法实现进行剥离 - InvocationHandler
+                    /*"    System.out.println(\"Log start...\");\n" + enter +
+                    "    movable." + m.getName() + "();\n" + enter +
+                    "    System.out.println(\"Log end...\");" + enter +*/
+                    "    handler.invoke(this," + m + ")" + enter +
+                    "}" + enter;
+        }
+
         //1、需要编译的文件 - 转换为字符串
         String str = "package cn.cxy.designpattern.dynamic_proxy.dynamic;\n" + enter +
                 "\n" + enter +
-                "public class TimeLogProxy implements Movable {\n" + enter +
+                "public class TimeLogProxy implements " + aInterface.getName() + " {\n" + enter +
                 "\n" + enter +
                 "    Movable movable;\n" + enter +
                 "\n" + enter +
@@ -43,12 +65,7 @@ public class CompileTest {
                 "        this.movable = movable;\n" + enter +
                 "    }\n" + enter +
                 "\n" + enter +
-                "    @Override\n" + enter +
-                "    public void move() {\n" + enter +
-                "        System.out.println(\"Log start...\");\n" + enter +
-                "        movable.move();\n" + enter +
-                "        System.out.println(\"Log end...\");\n" + enter +
-                "    }\n" + enter +
+                methodStr + enter +
                 "}";
 
         //2、根据字符串内容写入到本地磁盘目标文件中
@@ -72,14 +89,14 @@ public class CompileTest {
         fileMgr.close();
         //4、加载到内存并通过反射创建对象
         //cxy 普通 ClassLoader 只能 load classpath 路径下的 class 文件
-        URL[] urls = new URL[]{new URL("file:/" + System.getProperty("user.dir") + "\\src")};
+        URL[] urls = new URL[]{new URL("file:/" + System.getProperty("user.dir") + "\\src\\")};//TODO 路径需要/
         URLClassLoader classLoader = new URLClassLoader(urls);
         Class<?> aClass = classLoader.loadClass("cn.cxy.designpattern.dynamic_proxy.dynamic.TimeLogProxy");
         System.out.println(aClass.getName());
 
         Constructor<?> constructor = aClass.getConstructor(Movable.class);
         Movable t = (Movable) constructor.newInstance(new Tank());
-        t.move();
+        return t;
     }
 
 }
