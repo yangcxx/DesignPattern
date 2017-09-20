@@ -3,23 +3,26 @@ package cn.cxy.designpattern.builder;
 /**
  * Function: TODO
  * Reason: TODO ADD REASON(可选).</br>
- * Date: 2017/9/19 18:37 </br>
+ * Date: 2017/9/20 11:58 </br>
  *
  * @author: cx.yang
  * @since: Thinkingbar Web Project 1.0
  */
 public class Director {
 
-    private AbstractBuilder builder = new ConcreteBuilder();
+    private Builder builder;
 
-    public Product getAProduct(){
-        builder.setPart("BMW","X7");
-        return builder.getProduct();
+    public Director(Builder builder) {
+        this.builder = builder;
     }
 
-    public Product getBProduct(){
-        builder.setPart("Audi","Q7");
-        return builder.getProduct();
+    public Role construct() {
+        builder.buildBody();
+        builder.buildFace();
+        builder.buildHead();
+        builder.buildHp();
+        builder.buildMp();
+        builder.buildSp();
+        return builder.getRole();
     }
-
 }
