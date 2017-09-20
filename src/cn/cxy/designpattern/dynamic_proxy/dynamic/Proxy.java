@@ -42,34 +42,31 @@ public class Proxy {
                     /*"    System.out.println(\"Log start...\");\n" + enter +
                     "    movable." + m.getName() + "();\n" + enter +
                     "    System.out.println(\"Log end...\");" + enter +*/
-                    "    handler.invoke(this," + m + ")" + enter +
+                    "    try{" + enter +
+                    "       Method md = " + aInterface.getName() + ".class.getMethod(\"" + m.getName() + "\");" + enter +
+                    "       handler.invoke(this,md);" + enter +
+                    "    }catch(Exception e){" + enter +
+                    "       e.printStackTrace();}" + enter +
                     "}" + enter;
         }
 
         //1、需要编译的文件 - 转换为字符串
         String str = "package cn.cxy.designpattern.dynamic_proxy.dynamic;\n" + enter +
+                "import java.lang.reflect.Method;" + enter +
                 "\n" + enter +
-                "public class TimeLogProxy implements " + aInterface.getName() + " {\n" + enter +
+                "public class MovableProxy implements " + aInterface.getName() + " {\n" + enter +
                 "\n" + enter +
-                "    Movable movable;\n" + enter +
+                "    InvocationHandler handler;\n" + enter +
                 "\n" + enter +
-                "    public TimeLogProxy(Movable movable) {\n" + enter +
-                "        this.movable = movable;\n" + enter +
-                "    }\n" + enter +
-                "\n" + enter +
-                "    public Movable getMovable() {\n" + enter +
-                "        return movable;\n" + enter +
-                "    }\n" + enter +
-                "\n" + enter +
-                "    public void setMovable(Movable movable) {\n" + enter +
-                "        this.movable = movable;\n" + enter +
+                "    public MovableProxy(InvocationHandler handler) {\n" + enter +
+                "        this.handler = handler;\n" + enter +
                 "    }\n" + enter +
                 "\n" + enter +
                 methodStr + enter +
                 "}";
 
         //2、根据字符串内容写入到本地磁盘目标文件中
-        String dir = System.getProperty("user.dir") + "//src//cn//cxy//designpattern//dynamic_proxy//dynamic//TimeLogProxy.java";
+        String dir = System.getProperty("user.dir") + "//src//cn//cxy//designpattern//dynamic_proxy//dynamic//MovableProxy.java";
         System.out.println(dir);
         File file = new File(dir);
         if (!file.exists()) {
@@ -91,12 +88,12 @@ public class Proxy {
         //cxy 普通 ClassLoader 只能 load classpath 路径下的 class 文件
         URL[] urls = new URL[]{new URL("file:/" + System.getProperty("user.dir") + "\\src\\")};//TODO 路径需要/
         URLClassLoader classLoader = new URLClassLoader(urls);
-        Class<?> aClass = classLoader.loadClass("cn.cxy.designpattern.dynamic_proxy.dynamic.TimeLogProxy");
+        Class<?> aClass = classLoader.loadClass("cn.cxy.designpattern.dynamic_proxy.dynamic.MovableProxy");
         System.out.println(aClass.getName());
 
-        Constructor<?> constructor = aClass.getConstructor(Movable.class);
-        Movable t = (Movable) constructor.newInstance(new Tank());
-        return t;
+        Constructor<?> constructor = aClass.getConstructor(InvocationHandler.class);
+        Object o = constructor.newInstance(handler);
+        return o;
     }
 
 }

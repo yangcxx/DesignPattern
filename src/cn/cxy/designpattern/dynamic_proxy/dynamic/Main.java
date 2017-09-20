@@ -11,7 +11,8 @@ package cn.cxy.designpattern.dynamic_proxy.dynamic;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Movable o = (Movable)Proxy.newInstance(Movable.class,new LogHandler());
+        Tank t = new Tank();
+        Movable o = (Movable)Proxy.newInstance(Movable.class,new LogHandler(t));
         o.move();
     }
 

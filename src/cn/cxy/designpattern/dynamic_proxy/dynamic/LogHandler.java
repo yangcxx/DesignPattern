@@ -11,10 +11,17 @@ import java.lang.reflect.Method;
  * @since: Thinkingbar Web Project 1.0
  */
 public class LogHandler implements InvocationHandler {
+
+    private Object target;
+
+    public LogHandler(Object target) {
+        this.target = target;
+    }
+
     @Override
     public void invoke(Object o, Method method) throws Exception {
         System.out.println("Log start...");
-        method.invoke(o,new Object[]{});
+        method.invoke(target,new Object[]{});
         System.out.println("Log end...");
     }
 }
