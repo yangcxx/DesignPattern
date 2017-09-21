@@ -1,5 +1,6 @@
 package cn.cxy.designpattern.dynamic_proxy.dynamic;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -19,9 +20,17 @@ public class LogHandler implements InvocationHandler {
     }
 
     @Override
-    public void invoke(Object o, Method method) throws Exception {
-        System.out.println("Log start...");
-        method.invoke(target,new Object[]{});
-        System.out.println("Log end...");
+    public void invoke(Object o, Method method) {
+        long start = System.currentTimeMillis();
+        System.out.println("Log start... @ " + start);
+        try {
+            method.invoke(target, new Object[]{});
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("Log end... count " + (end - start) + " ms");
     }
 }

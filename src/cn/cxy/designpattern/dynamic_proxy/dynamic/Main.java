@@ -12,7 +12,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Tank t = new Tank();
-        Movable o = (Movable)Proxy.newInstance(Movable.class,new LogHandler(t));
+        InvocationHandler handler = new LogHandler(t);
+        Movable o = (Movable)Proxy.newInstance(Movable.class, handler);
         o.move();
     }
 

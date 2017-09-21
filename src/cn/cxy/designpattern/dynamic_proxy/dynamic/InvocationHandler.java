@@ -18,6 +18,6 @@ public interface InvocationHandler {
      * @param method 需要被执行的方法
      * @throws Exception
      */
-    void invoke(Object o, Method method) throws Exception;
+    void invoke(Object o, Method method);
 
 }
