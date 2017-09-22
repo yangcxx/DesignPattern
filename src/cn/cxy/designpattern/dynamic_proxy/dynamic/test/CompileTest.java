@@ -1,4 +1,7 @@
-package cn.cxy.designpattern.dynamic_proxy.dynamic;
+package cn.cxy.designpattern.dynamic_proxy.dynamic.test;
+
+import cn.cxy.designpattern.dynamic_proxy.dynamic.Vehicle;
+import cn.cxy.designpattern.dynamic_proxy.dynamic.Tank;
 
 import javax.tools.JavaCompiler;
 import javax.tools.JavaFileObject;
@@ -27,19 +30,19 @@ public class CompileTest {
         //1、需要编译的文件 - 转换为字符串
         String str = "package cn.cxy.designpattern.dynamic_proxy.dynamic;\n" + enter +
                 "\n" + enter +
-                "public class TimeLogProxy implements Movable {\n" + enter +
+                "public class TimeLogProxy implements Vehicle {\n" + enter +
                 "\n" + enter +
-                "    Movable movable;\n" + enter +
+                "    Vehicle movable;\n" + enter +
                 "\n" + enter +
-                "    public TimeLogProxy(Movable movable) {\n" + enter +
+                "    public TimeLogProxy(Vehicle movable) {\n" + enter +
                 "        this.movable = movable;\n" + enter +
                 "    }\n" + enter +
                 "\n" + enter +
-                "    public Movable getMovable() {\n" + enter +
+                "    public Vehicle getMovable() {\n" + enter +
                 "        return movable;\n" + enter +
                 "    }\n" + enter +
                 "\n" + enter +
-                "    public void setMovable(Movable movable) {\n" + enter +
+                "    public void setMovable(Vehicle movable) {\n" + enter +
                 "        this.movable = movable;\n" + enter +
                 "    }\n" + enter +
                 "\n" + enter +
@@ -77,8 +80,8 @@ public class CompileTest {
         Class<?> aClass = classLoader.loadClass("cn.cxy.designpattern.dynamic_proxy.dynamic.TimeLogProxy");
         System.out.println(aClass.getName());
 
-        Constructor<?> constructor = aClass.getConstructor(Movable.class);
-        Movable t = (Movable) constructor.newInstance(new Tank());
+        Constructor<?> constructor = aClass.getConstructor(Vehicle.class);
+        Vehicle t = (Vehicle) constructor.newInstance(new Tank());
         t.move();
     }
 

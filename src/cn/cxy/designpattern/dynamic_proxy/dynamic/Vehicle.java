@@ -8,7 +8,7 @@ package cn.cxy.designpattern.dynamic_proxy.dynamic;
  * @author: cx.yang
  * @since: Thinkingbar Web Project 1.0
  */
-public interface Movable {
+public interface Vehicle {
 
     void move();
 

@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Tank t = new Tank();
         InvocationHandler handler = new LogHandler(t);
-        Movable o = (Movable)Proxy.newInstance(Movable.class, handler);
+        Vehicle o = (Vehicle)Proxy.newInstance(Vehicle.class, handler);
         o.move();
     }
 

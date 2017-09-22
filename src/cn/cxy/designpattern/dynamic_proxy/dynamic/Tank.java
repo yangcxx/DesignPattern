@@ -8,7 +8,7 @@ package cn.cxy.designpattern.dynamic_proxy.dynamic;
  * @author: cx.yang
  * @since: Thinkingbar Web Project 1.0
  */
-public class Tank implements Movable {
+public class Tank implements Vehicle {
     @Override
     public void move() {
         System.out.println("Tank is moving...");
