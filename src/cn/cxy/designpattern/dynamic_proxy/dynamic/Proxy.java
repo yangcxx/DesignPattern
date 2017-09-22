@@ -15,7 +15,7 @@ import java.util.Locale;
 
 /**
  * Function: 动态编译方法类
- * Reason: TODO ADD REASON(可选).</br>
+ * Reason: TODO 通过动态代理生成 InvocationHandler，通过 InvocationHandler 中实现方法 method.invoke(target) 执行真正的目标方法  --  使目标方法与代理增加的方法进行隔离
  * Date: 2017/9/20 18:11 </br>
  *
  * @author: cx.yang
@@ -90,7 +90,7 @@ public class Proxy {
         URLClassLoader classLoader = new URLClassLoader(urls);
         Class<?> aClass = classLoader.loadClass("cn.cxy.designpattern.dynamic_proxy.dynamic.$Proxy1");
         System.out.println(aClass.getName());
-
+        //cxy 对 InvocationHandler 进行代理，InvocationHandler 中再通过 method.invoke(target) 执行真正的目标方法  --  双重代理
         Constructor<?> constructor = aClass.getConstructor(InvocationHandler.class);
         Object o = constructor.newInstance(handler);
         return o;
