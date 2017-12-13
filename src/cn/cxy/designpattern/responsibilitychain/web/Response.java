@@ -1,4 +1,4 @@
-package cn.cxy.designpattern.responsibilityChain.web;
+package cn.cxy.designpattern.responsibilitychain.web;
 
 import lombok.Getter;
 import lombok.Setter;
