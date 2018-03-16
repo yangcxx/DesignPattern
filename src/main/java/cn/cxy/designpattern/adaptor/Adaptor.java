@@ -7,11 +7,10 @@ import lombok.Setter;
 @Getter
 public class Adaptor implements AppleCharger {
 
-	private AndroidCharger androidCharger;
+    private AndroidCharger androidCharger;
 
-	@Override
-	public void charge() {
-		androidCharger.charge();
-	}
+    public void charge() {
+        androidCharger.charge();
+    }
 
 }
