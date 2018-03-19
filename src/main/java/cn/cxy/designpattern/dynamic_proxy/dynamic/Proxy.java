@@ -66,7 +66,8 @@ public class Proxy {
                 "}";
 
         //2、根据字符串内容写入到本地磁盘目标文件中
-        String dir = System.getProperty("user.dir") + "//src//cn//cxy//designpattern//dynamic_proxy//dynamic//$Proxy1.java";
+        String dir = System.getProperty("user.dir") +
+                "\\src\\main\\java\\cn\\cxy\\designpattern\\dynamic_proxy\\dynamic\\$Proxy1.java";
         System.out.println(dir);
         File file = new File(dir);
         if (!file.exists()) {
@@ -86,7 +87,7 @@ public class Proxy {
         fileMgr.close();
         //4、加载到内存并通过反射创建对象
         //cxy 普通 ClassLoader 只能 load classpath 路径下的 class 文件
-        URL[] urls = new URL[]{new URL("file:/" + System.getProperty("user.dir") + "\\src\\")};//TODO 路径需要/
+        URL[] urls = new URL[]{new URL("file:/" + System.getProperty("user.dir") + "\\src\\main\\java\\")};//TODO 路径需要/
         URLClassLoader classLoader = new URLClassLoader(urls);
         Class<?> aClass = classLoader.loadClass("cn.cxy.designpattern.dynamic_proxy.dynamic.$Proxy1");
         System.out.println(aClass.getName());

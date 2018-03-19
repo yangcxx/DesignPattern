@@ -8,12 +8,11 @@ package cn.cxy.designpattern.dynamic_proxy.statics;
  * @author: cx.yang
  * @since: Thinkingbar Web Project 1.0
  */
-public class TankTime extends Tank  {
+public class TankTime extends Tank {
 
-    @Override
     public void move() {
-        System.out.println("start time: "+System.currentTimeMillis());
+        System.out.println("start time: " + System.currentTimeMillis());
         super.move();
-        System.out.println("end time: "+System.currentTimeMillis());
+        System.out.println("end time: " + System.currentTimeMillis());
     }
 }

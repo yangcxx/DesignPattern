@@ -16,7 +16,6 @@ public class TankTimeProxy implements Movable {
         this.t = t;
     }
 
-    @Override
     public void move() {
         System.out.println("start time: "+System.currentTimeMillis());
         t.move();

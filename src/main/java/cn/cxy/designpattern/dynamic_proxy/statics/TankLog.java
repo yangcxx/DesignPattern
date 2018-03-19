@@ -10,7 +10,6 @@ package cn.cxy.designpattern.dynamic_proxy.statics;
  */
 public class TankLog extends TankTime {
 
-    @Override
     public void move() {
         System.out.println("start time: "+System.currentTimeMillis());
         super.move();

@@ -13,12 +13,10 @@ import cn.cxy.designpattern.responsibilitychain.web.Response;
  * @since: Thinkingbar Web Project 1.0
  */
 public class SensitiveFilter implements Filter {
-    @Override
     public String doFilter(String msg) {
         return msg.replace("开发人员", " Developer ");
     }
 
-    @Override
     public void doFilter(Request request, Response response,FilterChain chain) {
         String requestString = request.getRequestString();
         request.setRequestString(requestString.replace("开发人员", " Developer "));

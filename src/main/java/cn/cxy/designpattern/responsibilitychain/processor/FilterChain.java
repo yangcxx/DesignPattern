@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class FilterChain implements Filter {
 
     int index = 0;
-    private ArrayList<Filter> filters = new ArrayList<>();
+    private ArrayList<Filter> filters = new ArrayList<Filter>();
 
     /**
      * 返回当前调用对象即可实现链式编程
@@ -57,7 +57,6 @@ public class FilterChain implements Filter {
         return result;
     }
 
-    @Override
     public void doFilter(Request request, Response response, FilterChain chain) {
         if (index == filters.size()) return;
 

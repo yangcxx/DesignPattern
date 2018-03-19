@@ -11,7 +11,6 @@ import java.util.Random;
  * @since: Thinkingbar Web Project 1.0
  */
 public class Tank implements Movable {
-    @Override
     public void move() {
         System.out.println("Tank is moving...");
         try {

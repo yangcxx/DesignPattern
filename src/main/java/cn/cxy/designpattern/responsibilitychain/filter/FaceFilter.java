@@ -13,12 +13,10 @@ import cn.cxy.designpattern.responsibilitychain.web.Response;
  * @since: Thinkingbar Web Project 1.0
  */
 public class FaceFilter implements Filter {
-    @Override
     public String doFilter(String msg) {
         return msg.replace(":)", "^~v~^");
     }
 
-    @Override
     public void doFilter(Request request, Response response,FilterChain chain) {
         //request处理
         String requestString = request.getRequestString();

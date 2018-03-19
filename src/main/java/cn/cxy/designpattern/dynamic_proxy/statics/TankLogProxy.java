@@ -16,7 +16,6 @@ public class TankLogProxy implements Movable {
         this.t = t;
     }
 
-    @Override
     public void move() {
         System.out.println("Log start...");
         t.move();
